@@ -26,10 +26,12 @@ namespace VacuumShaders
 			public GameObject HealthBar;
 		    public TextMesh ScoreText;
 
-			private int playerHeath = 20;
-			private int damagePerHit = 10;
-			private int damagePerDebuff = 10;
-			private int gainPerBuff = 10;
+		public ParticleSystem DamageEmitter;
+
+			private int playerHeath = 2;
+			private int damagePerHit = 1;
+			private int damagePerDebuff = 1;
+			private int gainPerBuff = 1;
 			private int playerScore = 0;
 
 		private float laneWidth = 7.0f;
@@ -80,7 +82,7 @@ namespace VacuumShaders
 					newPos = new Vector3 (laneWidth, 0, 0);
 					side = SIDE.MiddleRight;
 
-		                        //animationComp.Play(moveLeft.name);
+		                        animationComp.Play(moveLeft.name);
 
 					break;
 
@@ -89,7 +91,7 @@ namespace VacuumShaders
 					newPos = new Vector3(  -laneWidth   , 0, 0);
 					side = SIDE.MiddleLeft;
 
-		                    //animationComp.Play(moveLeft.name);
+		                    animationComp.Play(moveLeft.name);
 					break;
 
 
@@ -98,7 +100,7 @@ namespace VacuumShaders
 					newPos = new Vector3(  -laneWidth * 2.0f   , 0, 0);
 					side = SIDE.Left;
 
-					//animationComp.Play(moveLeft.name);
+					animationComp.Play(moveLeft.name);
 					break;
 
 				}
@@ -115,7 +117,7 @@ namespace VacuumShaders
 					newPos = new Vector3(  -laneWidth  , 0, 0);
 					side = SIDE.MiddleLeft;
 
-					//animationComp.Play(moveRight.name);
+					animationComp.Play(moveRight.name);
 					break;
 
 					case SIDE.MiddleLeft:
@@ -123,7 +125,7 @@ namespace VacuumShaders
 					newPos = new Vector3(  laneWidth  , 0, 0);
 					side = SIDE.MiddleRight;
 
-					//animationComp.Play(moveRight.name);
+					animationComp.Play(moveRight.name);
 							break;
 
 					case SIDE.MiddleRight:
@@ -131,7 +133,7 @@ namespace VacuumShaders
 					newPos = new Vector3(  laneWidth * 2.0f, 0, 0);
 					side = SIDE.Right;
 
-					//animationComp.Play(moveRight.name);
+					animationComp.Play(moveRight.name);
 					break;
 
 					}
@@ -173,6 +175,7 @@ namespace VacuumShaders
 
 					playerHeath = playerHeath - damagePerDebuff;
 							Runner_SceneManager.get.DestroyDebuff(debuff);
+				DamageEmitter.Emit (1000);
 				}
 
 				if (buff != null) {
@@ -185,6 +188,8 @@ namespace VacuumShaders
                 {
 					playerHeath = playerHeath - damagePerHit;
 							Runner_SceneManager.get.DestroyCar(car);
+
+				DamageEmitter.Emit (1000);
 				}
 
 
@@ -198,7 +203,7 @@ namespace VacuumShaders
 				}else{
 
 
-					Vector3 barScale = new Vector3 (  playerHeath / 100.0f, 1.0f, 1.0f);
+					Vector3 barScale = new Vector3 (  playerHeath, 1.0f, 1.0f);
 
 					HealthBar.transform.localScale = barScale;
 

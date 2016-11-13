@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
+
 
 namespace VacuumShaders
 {
@@ -14,11 +16,10 @@ namespace VacuumShaders
 		void Start () {
 
             PlayerPrefs.SetInt ("CurrentScore",0);
-			int Score = PlayerPrefs.GetInt ("HighScore");
 
-			GameScore.text = "High Score =" + Score.ToString();
+			GetScore() ;
 
-            Message.text = "Press Enter To Start";
+           		 Message.text = "Press Enter To Start";
 		}
 
 		// Update is called once per frame
@@ -32,6 +33,35 @@ namespace VacuumShaders
 			}
 
 		}
+	
+
+
+	public void GetScore() {
+
+
+		Action<string> success = (string data) => {
+
+
+				GameScore.text = "Server High Score =" + data;
+
+		};
+
+		Action<string, string> fail = (string data, string error) => {
+
+
+			//if (!string.IsNullOrEmpty(error)) {
+
+			//}
+
+			string msg = data + (string.IsNullOrEmpty(error) ? "" : " : "  + error);
+
+		};
+
+
+			StartCoroutine (  ApiManager.Instance.Get( success, fail)  );
+
+
 	}
 
+	}
 }

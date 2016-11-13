@@ -39,8 +39,10 @@ using VacuumShaders.CurvedWorld;
 			static public GameObject lastChunkRight;
 			static public GameObject lastChunkLeft;
 
-        static public float RoadWidth = 10.0f;
-           static public float speed = 8.0f;
+        static public float RoadWidth = 15.0f;
+           static public float speed = 0.0f;
+
+		static private float increaseFactor = 1.001f;
 
             List<Material> listMaterials;
             //////////////////////////////////////////////////////////////////////////////
@@ -50,6 +52,7 @@ using VacuumShaders.CurvedWorld;
             //////////////////////////////////////////////////////////////////////////////
             void Awake()
             { 
+			speed = 8.0f;
                 get = this;
 
                 
@@ -155,7 +158,7 @@ using VacuumShaders.CurvedWorld;
 
 		static public void IncreaseSpeed(){
 
-			speed++;
+			speed = speed++;
 
 		}
             public void DestroyChunk(Runner_Chunk moveElement)
