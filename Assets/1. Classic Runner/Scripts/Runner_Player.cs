@@ -20,21 +20,30 @@ namespace VacuumShaders
             Vector3 newPos;
             SIDE side;
 
-            Animation animationComp;
-            public AnimationClip moveLeft;
-            public AnimationClip moveRight;
-			public GameObject HealthBar;
-		    public TextMesh ScoreText;
+	            Animation animationComp;
+	            public AnimationClip moveLeft;
+	            public AnimationClip moveRight;
+		public AnimationClip moveForward;
+		public AnimationClip moveBackwards;
+		public AnimationClip bounceUp;
+
+		public AudioSource DamageSound;
+		public AudioSource BuffSound;
+		public AudioSource DebuffSound;
+		public AudioSource HornSound;
+		//public GameObject HealthBar;
+		public GameScoreFont ScoreText;
+		public GameScoreFont LivesText;
 
 		public ParticleSystem DamageEmitter;
 
 			private int playerHeath = 2;
 			private int damagePerHit = 1;
-			private int damagePerDebuff = 1;
+			private int damagePerDebuff = 2;
 			private int gainPerBuff = 1;
 			private int playerScore = 0;
 
-		private float laneWidth = 7.0f;
+		private float laneWidth = 2.0f;
 
             //////////////////////////////////////////////////////////////////////////////
             //                                                                          // 
@@ -44,6 +53,8 @@ namespace VacuumShaders
             void Awake()
             {
                 get = this;
+
+			ScoreText.SetScore( "0" );
             }
 
             // Use this for initialization
@@ -70,16 +81,41 @@ namespace VacuumShaders
             void Update()
             {
 
-				if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) ||   OVRInput.Get(OVRInput.RawAxis2D.RThumbstick).x < 0  )
-                {
+			if (Input.GetKeyDown (KeyCode.Space)) {
 
+				//newPos = new Vector3 (transform.position.x, transform.position.y + laneWidth  , transform.position.z);
+				animationComp.Play(bounceUp.name);
+				HornSound.Play ();
+			}
+
+			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) || OVRInput.Get (OVRInput.RawAxis2D.RThumbstick).y < 0) {
+
+
+				newPos = new Vector3 (transform.position.x,0, transform.position.z + laneWidth);
+				animationComp.Play(moveForward.name);
+			}
+
+			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S) || OVRInput.Get (OVRInput.RawAxis2D.RThumbstick).y > 0) {
+
+				newPos = new Vector3 (transform.position.x,0, transform.position.z - laneWidth);
+				animationComp.Play(moveBackwards.name);
+			}
+
+
+			if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) ||   OVRInput.Get(OVRInput.RawAxis2D.RThumbstick).x < 0  )
+                	{
+				float x = Mathf.Clamp( transform.position.x - laneWidth,  - (laneWidth* 8.0f), 0.0f  );
+
+				newPos = new Vector3 (x  , 0,  transform.position.z);
+				animationComp.Play(moveLeft.name);
+				/*
 				switch ( side ){
 
 
 				case  SIDE.Right:
 		                    
 
-					newPos = new Vector3 (laneWidth, 0, 0);
+					newPos = new Vector3 (laneWidth, 0, newPosZ);
 					side = SIDE.MiddleRight;
 
 		                        animationComp.Play(moveLeft.name);
@@ -88,7 +124,7 @@ namespace VacuumShaders
 
 				case SIDE.MiddleRight:
 		                
-					newPos = new Vector3(  -laneWidth   , 0, 0);
+					newPos = new Vector3(  -laneWidth   , 0, newPosZ);
 					side = SIDE.MiddleLeft;
 
 		                    animationComp.Play(moveLeft.name);
@@ -97,24 +133,29 @@ namespace VacuumShaders
 
 				case SIDE.MiddleLeft:
 
-					newPos = new Vector3(  -laneWidth * 2.0f   , 0, 0);
+					newPos = new Vector3(  -laneWidth * 2.0f   , 0, newPosZ);
 					side = SIDE.Left;
 
 					animationComp.Play(moveLeft.name);
 					break;
 
 				}
-
+				*/
                 }
 
-		if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) ||   OVRInput.Get(OVRInput.RawAxis2D.RThumbstick).x > 0)
+		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) ||   OVRInput.Get(OVRInput.RawAxis2D.RThumbstick).x > 0)
                 {
-	                   
+				float x = Mathf.Clamp( transform.position.x + laneWidth, 0.0f, (laneWidth* 8.0f));
+
+				newPos = new Vector3 ( x, 0,  transform.position.z);
+				animationComp.Play(moveRight.name);
+
+				/*
 					switch ( side ){
 
 					case SIDE.Left:
 				
-					newPos = new Vector3(  -laneWidth  , 0, 0);
+					newPos = new Vector3(  -laneWidth  , 0, newPosZ);
 					side = SIDE.MiddleLeft;
 
 					animationComp.Play(moveRight.name);
@@ -122,7 +163,7 @@ namespace VacuumShaders
 
 					case SIDE.MiddleLeft:
 				
-					newPos = new Vector3(  laneWidth  , 0, 0);
+					newPos = new Vector3(  laneWidth  , 0, newPosZ);
 					side = SIDE.MiddleRight;
 
 					animationComp.Play(moveRight.name);
@@ -130,7 +171,7 @@ namespace VacuumShaders
 
 					case SIDE.MiddleRight:
 				
-					newPos = new Vector3(  laneWidth * 2.0f, 0, 0);
+					newPos = new Vector3(  laneWidth * 2.0f, 0, newPosZ);
 					side = SIDE.Right;
 
 					animationComp.Play(moveRight.name);
@@ -138,14 +179,14 @@ namespace VacuumShaders
 
 					}
 
-
+					*/
 
                 }
 		
 
                 transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 10);
 
-          
+         
             }
 
 
@@ -153,7 +194,7 @@ namespace VacuumShaders
 		public void Score(){
 
 			playerScore++;
-			ScoreText.text = playerScore.ToString();
+			ScoreText.SetScore( playerScore.ToString());
 
 			Runner_SceneManager.IncreaseSpeed ();
 
@@ -161,8 +202,8 @@ namespace VacuumShaders
 
             void OnCollisionEnter(Collision collision)
             {
-                Vector3 force = (Vector3.forward + Vector3.up + Random.insideUnitSphere).normalized * Random.Range(100, 150);
-                collision.rigidbody.AddForce(force, ForceMode.Impulse);
+                //Vector3 force = (Vector3.forward + Vector3.up + Random.insideUnitSphere).normalized * Random.Range(100, 150);
+                //collision.rigidbody.AddForce(force, ForceMode.Impulse);
 
                 Runner_Car car = collision.gameObject.GetComponent<Runner_Car>();
 				Runner_Debuff debuff = collision.gameObject.GetComponent<Runner_Debuff>();
@@ -176,20 +217,26 @@ namespace VacuumShaders
 					playerHeath = playerHeath - damagePerDebuff;
 							Runner_SceneManager.get.DestroyDebuff(debuff);
 				DamageEmitter.Emit (1000);
+
+				DebuffSound.Play ();
 				}
 
 				if (buff != null) {
 
 					playerHeath = playerHeath + gainPerBuff;
 							Runner_SceneManager.get.DestroyBuff(buff);
+				BuffSound.Play();
 				}
 
                 if (car != null)
                 {
 					playerHeath = playerHeath - damagePerHit;
-							Runner_SceneManager.get.DestroyCar(car);
+							//Runner_SceneManager.get.DestroyCar(car);
 
 				DamageEmitter.Emit (1000);
+
+				DamageSound.Play();
+
 				}
 
 
@@ -203,9 +250,16 @@ namespace VacuumShaders
 				}else{
 
 
-					Vector3 barScale = new Vector3 (  playerHeath, 1.0f, 1.0f);
+					//Vector3 barScale = new Vector3 (  playerHeath, 1.0f, 1.0f);
+					//HealthBar.transform.localScale = barScale;
 
-					HealthBar.transform.localScale = barScale;
+				string lives = "";
+				for (int i = 0; i < playerHeath; i++) {
+
+					lives = lives + "-";
+				}
+
+				LivesText.SetScore (lives);
 
 
                 }
