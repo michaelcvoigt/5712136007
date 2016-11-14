@@ -39,6 +39,9 @@ using VacuumShaders.CurvedWorld;
 			static public GameObject lastChunkRight;
 			static public GameObject lastChunkLeft;
 
+
+		static public float sideChunkWidth= 195.0f;
+
         static public float RoadWidth = 15.0f;
            static public float speed = 0.0f;
 
@@ -71,7 +74,7 @@ using VacuumShaders.CurvedWorld;
 				{
 					GameObject obj = (GameObject)Instantiate(chunksLeft[i]);
 
-					obj.transform.position = new Vector3(-30, -5, i * chunkSize);
+				obj.transform.position = new Vector3(-sideChunkWidth, -5, i * chunkSize);
 
 					lastChunkLeft = obj;
 				}
@@ -81,7 +84,7 @@ using VacuumShaders.CurvedWorld;
 				{
 					GameObject obj = (GameObject)Instantiate(chunksRight[i]);
 
-					obj.transform.position = new Vector3(30, -5, i * chunkSize);
+				obj.transform.position = new Vector3(20.0f, -5, i * chunkSize);
 
 					lastChunkRight = obj;
 				}

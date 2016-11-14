@@ -13,6 +13,7 @@ GameObject:
   - 82: {fileID: 82000014128989946}
   - 65: {fileID: 65000012005358280}
   - 114: {fileID: 114000010614277914}
+  - 114: {fileID: 114000012218576980}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -73,7 +74,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136928}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000016292068}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
@@ -1022,12 +1023,35 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136928}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22c3c6def92bb32468704e98d1dbff81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SpinRate: {x: 0, y: 1, z: 0}
+--- !u!114 &114000012218576980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d29e7f0613cdecc438ad8a2b75062b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveLeft: {fileID: 7400000, guid: 9b986cfcf3f48f843be2c6e040806feb, type: 2}
+  moveRight: {fileID: 7400000, guid: a6e64bdfc6ca2754f92bce0b5b6e620f, type: 2}
+  moveForward: {fileID: 7400000, guid: 4888f52f0423b1d4d9ebe804c383c3a8, type: 2}
+  moveBackwards: {fileID: 7400000, guid: 789eb4f4c7925634091252954e3b51f5, type: 2}
+  bounceUp: {fileID: 7400000, guid: f70a10eebd5c9e945bf26298eeef5461, type: 2}
+  DamageSound: {fileID: 82000014069815212}
+  BuffSound: {fileID: 82000010224662126}
+  DebuffSound: {fileID: 82000014256166652}
+  HornSound: {fileID: 82000011151081132}
+  ScoreText: {fileID: 0}
+  LivesText: {fileID: 0}
+  DamageEmitter: {fileID: 198000011069975162}
 --- !u!198 &198000011069975162
 ParticleSystem:
   m_ObjectHideFlags: 1

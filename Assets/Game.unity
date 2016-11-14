@@ -197,12 +197,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
---- !u!114 &324716491 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11405046, guid: 9befc1b7d07cacc4facec4e677dd4058,
-    type: 2}
-  m_PrefabInternal: {fileID: 1785929575}
-  m_Script: {fileID: 11500000, guid: d29e7f0613cdecc438ad8a2b75062b93, type: 3}
 --- !u!1 &421681922
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +308,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1274564588
+  randomSeed: -52983391
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -2039,7 +2033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e4a7ff944045645ac5fae1663d8d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyRunner_Player: {fileID: 324716491}
+  MyRunner_Player: {fileID: 1543074545}
 --- !u!65 &673103858
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2744,17 +2738,17 @@ MonoBehaviour:
   - {fileID: 149138, guid: 865af4b9852f8dc4497cabcf75070ddd, type: 2}
   - {fileID: 149138, guid: 865af4b9852f8dc4497cabcf75070ddd, type: 2}
   chunksLeft:
-  - {fileID: 149138, guid: c600891dd42a82d4fb77de89d0c27318, type: 2}
-  - {fileID: 149138, guid: c600891dd42a82d4fb77de89d0c27318, type: 2}
-  - {fileID: 149138, guid: c600891dd42a82d4fb77de89d0c27318, type: 2}
-  - {fileID: 149138, guid: c600891dd42a82d4fb77de89d0c27318, type: 2}
-  - {fileID: 149138, guid: c600891dd42a82d4fb77de89d0c27318, type: 2}
+  - {fileID: 149138, guid: fe80a823917dbdf4bb5915007647bb0b, type: 2}
+  - {fileID: 149138, guid: fe80a823917dbdf4bb5915007647bb0b, type: 2}
+  - {fileID: 149138, guid: fe80a823917dbdf4bb5915007647bb0b, type: 2}
+  - {fileID: 149138, guid: fe80a823917dbdf4bb5915007647bb0b, type: 2}
+  - {fileID: 149138, guid: fe80a823917dbdf4bb5915007647bb0b, type: 2}
   chunksRight:
-  - {fileID: 149138, guid: c113da6db227db143a883c0e128f53cf, type: 2}
-  - {fileID: 149138, guid: c113da6db227db143a883c0e128f53cf, type: 2}
-  - {fileID: 149138, guid: c113da6db227db143a883c0e128f53cf, type: 2}
-  - {fileID: 149138, guid: c113da6db227db143a883c0e128f53cf, type: 2}
-  - {fileID: 149138, guid: c113da6db227db143a883c0e128f53cf, type: 2}
+  - {fileID: 149138, guid: fe80a823917dbdf4bb5915007647bb0b, type: 2}
+  - {fileID: 149138, guid: fe80a823917dbdf4bb5915007647bb0b, type: 2}
+  - {fileID: 149138, guid: fe80a823917dbdf4bb5915007647bb0b, type: 2}
+  - {fileID: 149138, guid: fe80a823917dbdf4bb5915007647bb0b, type: 2}
+  - {fileID: 149138, guid: fe80a823917dbdf4bb5915007647bb0b, type: 2}
   cars:
   - {fileID: 110142, guid: 210a25292c27ead40b7e263e83513c9e, type: 2}
   - {fileID: 110438, guid: 86c365d1341310443a68a064a435bd80, type: 2}
@@ -2957,6 +2951,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1543074545 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012218576980, guid: 9befc1b7d07cacc4facec4e677dd4058,
+    type: 2}
+  m_PrefabInternal: {fileID: 1785929575}
+  m_Script: {fileID: 11500000, guid: d29e7f0613cdecc438ad8a2b75062b93, type: 3}
 --- !u!1 &1559064270
 GameObject:
   m_ObjectHideFlags: 0
@@ -3063,11 +3063,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11405046, guid: 9befc1b7d07cacc4facec4e677dd4058, type: 2}
+    - target: {fileID: 114000012218576980, guid: 9befc1b7d07cacc4facec4e677dd4058,
+        type: 2}
       propertyPath: ScoreText
       value: 
       objectReference: {fileID: 875762876}
-    - target: {fileID: 11405046, guid: 9befc1b7d07cacc4facec4e677dd4058, type: 2}
+    - target: {fileID: 114000012218576980, guid: 9befc1b7d07cacc4facec4e677dd4058,
+        type: 2}
       propertyPath: LivesText
       value: 
       objectReference: {fileID: 228146111}
