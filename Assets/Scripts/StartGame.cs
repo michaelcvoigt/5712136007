@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 using System;
 
 
-// you hit , you die
-// go front and back
 // cop cars 
 // fix rotated cars
 // fix side worlds

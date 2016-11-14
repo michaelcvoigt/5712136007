@@ -10,9 +10,9 @@ GameObject:
   - 4: {fileID: 448722}
   - 54: {fileID: 5415644}
   - 111: {fileID: 11190374}
-  - 114: {fileID: 11405046}
   - 82: {fileID: 82000014128989946}
   - 65: {fileID: 65000012005358280}
+  - 114: {fileID: 114000010614277914}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -66,22 +66,22 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 448722}
-  m_RootOrder: 2
+  m_RootOrder: 0
 --- !u!4 &448722
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136928}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000016292068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
   m_Children:
-  - {fileID: 4000012212685200}
-  - {fileID: 4000013743710506}
   - {fileID: 446480}
   - {fileID: 459532}
+  - {fileID: 4000012212685200}
+  - {fileID: 4000013743710506}
   - {fileID: 4000011436652914}
   - {fileID: 4000012535814068}
   - {fileID: 4000011429456392}
@@ -103,7 +103,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 448722}
-  m_RootOrder: 3
+  m_RootOrder: 1
 --- !u!23 &2315490
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -210,29 +210,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 1
   m_CullingType: 0
---- !u!114 &11405046
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d29e7f0613cdecc438ad8a2b75062b93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveLeft: {fileID: 7400000, guid: 9b986cfcf3f48f843be2c6e040806feb, type: 2}
-  moveRight: {fileID: 7400000, guid: a6e64bdfc6ca2754f92bce0b5b6e620f, type: 2}
-  moveForward: {fileID: 7400000, guid: 4888f52f0423b1d4d9ebe804c383c3a8, type: 2}
-  moveBackwards: {fileID: 7400000, guid: 789eb4f4c7925634091252954e3b51f5, type: 2}
-  bounceUp: {fileID: 7400000, guid: f70a10eebd5c9e945bf26298eeef5461, type: 2}
-  DamageSound: {fileID: 82000014069815212}
-  BuffSound: {fileID: 82000010224662126}
-  DebuffSound: {fileID: 82000014256166652}
-  HornSound: {fileID: 82000011151081132}
-  ScoreText: {fileID: 0}
-  LivesText: {fileID: 0}
-  DamageEmitter: {fileID: 198000011069975162}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -450,7 +427,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -6, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 448722}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!4 &4000012366209578
 Transform:
   m_ObjectHideFlags: 1
@@ -515,7 +492,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -6, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 448722}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!23 &23000010173249702
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -832,7 +809,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300001, guid: cc0bf72c5763743468b1ee3d764d3d04,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 03e3bd08a6e70684dbe299a3e185fdd2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ecf9a9deb9896374dad7f408c1dbd172, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
@@ -981,9 +958,9 @@ Light:
   serializedVersion: 7
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 50
-  m_SpotAngle: 30
+  m_Intensity: 3
+  m_Range: 100
+  m_SpotAngle: 60
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -995,7 +972,7 @@ Light:
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
-  m_Flare: {fileID: 12100000, guid: 9bdb18c49d114cb4300035184241aa39, type: 2}
+  m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1015,9 +992,9 @@ Light:
   serializedVersion: 7
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 50
-  m_SpotAngle: 30
+  m_Intensity: 1.5
+  m_Range: 100
+  m_SpotAngle: 60
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -1029,7 +1006,7 @@ Light:
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
-  m_Flare: {fileID: 12100000, guid: 9bdb18c49d114cb4300035184241aa39, type: 2}
+  m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1039,6 +1016,18 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114000010614277914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c3c6def92bb32468704e98d1dbff81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpinRate: {x: 0, y: 1, z: 0}
 --- !u!198 &198000011069975162
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1089,7 +1078,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1694042880
+  randomSeed: -484209165
   InitialModule:
     serializedVersion: 2
     enabled: 1
