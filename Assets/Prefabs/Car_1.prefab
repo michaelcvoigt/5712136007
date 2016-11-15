@@ -363,7 +363,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.4368935, y: 3.8844314, z: 5.9373856}
-  m_Center: {x: 0, y: 2.3712928, z: -0.0000038146973}
+  m_Center: {x: 0, y: 1.92, z: -0.0000038146973}
 --- !u!114 &11409156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,6 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  Dirty: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

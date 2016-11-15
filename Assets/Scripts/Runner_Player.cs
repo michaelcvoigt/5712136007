@@ -47,9 +47,9 @@ namespace VacuumShaders
 		public ParticleSystem BuffChildEmitter3;
 		public ParticleSystem BuffChildEmitter4;
 
-			private int playerHealth = 1;
+			private int playerHealth = 100;
 			private int damagePerHit = 1;
-			private int damagePerDebuff = 1;
+			private int damagePerDebuff = 3;
 			private int gainPerBuff = 1;
 			private int playerScore = 0;
 

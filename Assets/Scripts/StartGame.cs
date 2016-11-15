@@ -3,7 +3,9 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
 
-// make controller work
+
+// stop cars from floating - not mounted to road
+
 
 // make cars not spawn on top of each other
 // faster spawners

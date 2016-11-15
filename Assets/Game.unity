@@ -2822,12 +2822,24 @@ MonoBehaviour:
   - {fileID: 142106, guid: bff2c8d8888fabc43a9152869a9d2d0c, type: 2}
   - {fileID: 195246, guid: c42c10dfe7dd3da4192529c5ed1f6383, type: 2}
   - {fileID: 110142, guid: 210a25292c27ead40b7e263e83513c9e, type: 2}
+  - {fileID: 138884, guid: a954b98a9a145014f8c3c20246f2fbaa, type: 2}
+  - {fileID: 138884, guid: a954b98a9a145014f8c3c20246f2fbaa, type: 2}
+  - {fileID: 138884, guid: a954b98a9a145014f8c3c20246f2fbaa, type: 2}
+  - {fileID: 110142, guid: 210a25292c27ead40b7e263e83513c9e, type: 2}
   - {fileID: 110438, guid: 86c365d1341310443a68a064a435bd80, type: 2}
   - {fileID: 185446, guid: e1758665272261146a2b2aad075bceb7, type: 2}
+  - {fileID: 128710, guid: c93ff878fbc83f649a72ac774b49b831, type: 2}
+  - {fileID: 142106, guid: bff2c8d8888fabc43a9152869a9d2d0c, type: 2}
+  - {fileID: 195246, guid: c42c10dfe7dd3da4192529c5ed1f6383, type: 2}
+  - {fileID: 110142, guid: 210a25292c27ead40b7e263e83513c9e, type: 2}
+  - {fileID: 138884, guid: a954b98a9a145014f8c3c20246f2fbaa, type: 2}
+  - {fileID: 138884, guid: a954b98a9a145014f8c3c20246f2fbaa, type: 2}
   buffs:
   - {fileID: 195246, guid: ec72b254b32b90146a6febabd88d80b9, type: 2}
   - {fileID: 195246, guid: 442eb5b8193fae2409a360fef1c565a7, type: 2}
   debuffs:
+  - {fileID: 195246, guid: cb53540775039c64c8e9d80f540afa26, type: 2}
+  - {fileID: 195246, guid: cb53540775039c64c8e9d80f540afa26, type: 2}
   - {fileID: 195246, guid: cb53540775039c64c8e9d80f540afa26, type: 2}
   SpawnSound: {fileID: 8300000, guid: 1998a82d9ac19624fb69ae286855fd42, type: 3}
   curvedWorld_Controller: {fileID: 1988471016}
