@@ -16,6 +16,9 @@ namespace VacuumShaders
             Rigidbody rigidBody;
             public float speed = 1;
 
+		public bool Dirty = false;
+
+
 		private bool scoreCounts = true;
 
             //////////////////////////////////////////////////////////////////////////////
@@ -23,20 +26,21 @@ namespace VacuumShaders
             //Unity Functions                                                           //                
             //                                                                          //               
             //////////////////////////////////////////////////////////////////////////////
-            void Start()
-            {
+            
+		void Awake()
+		{
+
+			Dirty = false;
+		}
+		void Start()
+            	{
                 rigidBody = GetComponent<Rigidbody>();
 
-                float roadWidth = Runner_SceneManager.RoadWidth;
-
-           	//transform.position = new Vector3(Random.Range(-roadWidth, roadWidth), 1, Random.Range(140, 240));
-
-
-		transform.position = new Vector3(Random.Range(-roadWidth, roadWidth), 0.0f, Random.Range(140, 240));
-
-                speed = Random.Range(2f, 6f);
-
-            }
+            	}
+		public void MarkDirty()
+		{
+			Dirty = true;
+		}
 
 		public void Hit()
 		{
@@ -47,7 +51,6 @@ namespace VacuumShaders
             {
                 rigidBody.MovePosition(transform.position + Runner_SceneManager.moveVector * Runner_SceneManager.speed * Time.deltaTime * speed);
 
-		
 		if (transform.position.z < -  Runner_SceneManager.BackDistance    )
                 {
 			Runner_SceneManager.get.DestroyCar(this, scoreCounts);

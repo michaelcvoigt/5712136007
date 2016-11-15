@@ -43,7 +43,7 @@ using VacuumShaders.CurvedWorld;
 		static public float BackDistance = 180.0f;
 
         	static public float RoadWidth = 15.0f;
-           	static public float speed = 0.0f;
+           	static public float speed;
 
 		static private float increaseFactor = 1.001f;
 
@@ -93,20 +93,26 @@ using VacuumShaders.CurvedWorld;
                 //Instantiate cars
                 for (int i = 0; i < cars.Length; i++)
                 {
-                    Instantiate(cars[i]);
+
+				GameObject spawnedCar = Instantiate(  cars[i] , GetRandomSpawnVector() , Quaternion.identity ) as GameObject;
+
+				Runner_Car spawnedRunner_Car = spawnedCar.GetComponent<Runner_Car> ();
+				spawnedRunner_Car.speed = Random.Range(2f, 6f);
+
+
                 }
 
 
 				//Instantiate buffs
 				for (int i = 0; i < buffs.Length; i++)
 				{
-					Instantiate(buffs[i]);
+				Instantiate(buffs[i], GetRandomSpawnVector() , Quaternion.identity );
 				}
 
 				//Instantiate debuffs
 				for (int i = 0; i < debuffs.Length; i++)
 				{
-					Instantiate(debuffs[i]);
+				Instantiate(debuffs[i], GetRandomSpawnVector() , Quaternion.identity );
 				}
             } 
 
@@ -207,22 +213,27 @@ using VacuumShaders.CurvedWorld;
 				lastChunkRight.transform.position = newPos;
 			}
 
-		public void DestroyCar(Runner_Car car, bool scoreCounts)
-            {
-                GameObject.Destroy(car.gameObject);
+			public void DestroyCar(Runner_Car car, bool scoreCounts)
+            		{
+                		GameObject.Destroy(car.gameObject);
 
-                Instantiate(  cars[ Random.Range(0, cars.Length)]  );
 
-			if (scoreCounts) {
-				MyRunner_Player.Score ();
-			}
-            }
+			GameObject spawnedCar = Instantiate(  cars[ Random.Range(0, cars.Length)] , GetRandomSpawnVector() , Quaternion.identity ) as GameObject;
+
+				Runner_Car spawnedRunner_Car = spawnedCar.GetComponent<Runner_Car> ();
+
+				spawnedRunner_Car.speed = Random.Range(2f, 6f);
+
+				if (scoreCounts) {
+					MyRunner_Player.Score ();
+				}
+            		}
 
 			public void DestroyBuff(Runner_Buff buff)
 			{
 				GameObject.Destroy(buff.gameObject);
-				//SpawnSound.
-				Instantiate(buffs[Random.Range(0, buffs.Length)]);
+
+			Instantiate(buffs[Random.Range(0, buffs.Length)], GetRandomSpawnVector()  , Quaternion.identity );
 			}
 
 			public void DestroyDebuff(Runner_Debuff debuff)
@@ -230,10 +241,15 @@ using VacuumShaders.CurvedWorld;
 				GameObject.Destroy(debuff.gameObject);
 
 				
-
-				Instantiate(debuffs[Random.Range(0, debuffs.Length)]);
+			Instantiate(debuffs[Random.Range(0, debuffs.Length)] , GetRandomSpawnVector() , Quaternion.identity );
 			}
 
+		public Vector3 GetRandomSpawnVector(){
+
+			Vector3 spawnPosition = new Vector3(Random.Range(-RoadWidth, RoadWidth), 0.0f, Random.Range(140, 240));
+			return spawnPosition;
+
+		}
 
 
         }

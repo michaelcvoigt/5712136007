@@ -2110,11 +2110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd70d448b18cfbc46af26466f752332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualizeFocus: 0
+  visualizeFocus: 1
   focalLength: 11.77
   focalSize: 0.63
-  aperture: 7.59
-  focalTransform: {fileID: 0}
+  aperture: 22
+  focalTransform: {fileID: 1662867724}
   maxBlurSize: 2
   highResolution: 0
   blurType: 1
@@ -2126,7 +2126,7 @@ MonoBehaviour:
   dx11BokehThreshold: 0.5
   dx11SpawnHeuristic: 0.0875
   dx11BokehTexture: {fileID: 2800000, guid: a4cdca73d61814d33ac1587f6c163bca, type: 3}
-  dx11BokehScale: 1.14
+  dx11BokehScale: 3
   dx11BokehIntensity: 2.59
 --- !u!82 &853553273
 AudioSource:
@@ -2815,6 +2815,15 @@ MonoBehaviour:
   - {fileID: 128710, guid: c93ff878fbc83f649a72ac774b49b831, type: 2}
   - {fileID: 142106, guid: bff2c8d8888fabc43a9152869a9d2d0c, type: 2}
   - {fileID: 195246, guid: c42c10dfe7dd3da4192529c5ed1f6383, type: 2}
+  - {fileID: 110142, guid: 210a25292c27ead40b7e263e83513c9e, type: 2}
+  - {fileID: 110438, guid: 86c365d1341310443a68a064a435bd80, type: 2}
+  - {fileID: 185446, guid: e1758665272261146a2b2aad075bceb7, type: 2}
+  - {fileID: 128710, guid: c93ff878fbc83f649a72ac774b49b831, type: 2}
+  - {fileID: 142106, guid: bff2c8d8888fabc43a9152869a9d2d0c, type: 2}
+  - {fileID: 195246, guid: c42c10dfe7dd3da4192529c5ed1f6383, type: 2}
+  - {fileID: 110142, guid: 210a25292c27ead40b7e263e83513c9e, type: 2}
+  - {fileID: 110438, guid: 86c365d1341310443a68a064a435bd80, type: 2}
+  - {fileID: 185446, guid: e1758665272261146a2b2aad075bceb7, type: 2}
   buffs:
   - {fileID: 195246, guid: ec72b254b32b90146a6febabd88d80b9, type: 2}
   - {fileID: 195246, guid: 442eb5b8193fae2409a360fef1c565a7, type: 2}
@@ -3092,7 +3101,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 448722, guid: 9befc1b7d07cacc4facec4e677dd4058, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 27.14
       objectReference: {fileID: 0}
     - target: {fileID: 448722, guid: 9befc1b7d07cacc4facec4e677dd4058, type: 2}
       propertyPath: m_LocalPosition.z

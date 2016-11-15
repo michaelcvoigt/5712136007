@@ -1,9 +1,7 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using UnityStandardAssets.CrossPlatformInput;
-using UnitySampleAssets.CrossPlatformInput;
+
 
 namespace VacuumShaders
     {
@@ -49,13 +47,16 @@ namespace VacuumShaders
 		public ParticleSystem BuffChildEmitter3;
 		public ParticleSystem BuffChildEmitter4;
 
-			private int playerHeath = 2;
+			private int playerHealth = 1;
 			private int damagePerHit = 1;
-			private int damagePerDebuff = 2;
+			private int damagePerDebuff = 1;
 			private int gainPerBuff = 1;
 			private int playerScore = 0;
 
-		private float laneWidth = 2.0f;
+		private static float strifeAmount = 1.0f;
+		private static float laneMax = 15.0f * strifeAmount;
+
+		private static GameObject lastHitObject = null;
 
             //////////////////////////////////////////////////////////////////////////////
             //                                                                          // 
@@ -73,9 +74,8 @@ namespace VacuumShaders
             void Start()
             {
 
-                side = SIDE.MiddleLeft;
-			transform.position = new Vector3(- laneWidth   , 0, 0); 
-
+               	side = SIDE.MiddleLeft;
+		transform.position = new Vector3(- strifeAmount   , 0, 0); 
                 newPos = transform.position;
 
                 animationComp = GetComponent<Animation>();
@@ -95,48 +95,38 @@ namespace VacuumShaders
 
 			if (Input.GetKeyDown (KeyCode.Space)) {
 
-				//newPos = new Vector3 (transform.position.x, transform.position.y + laneWidth  , transform.position.z);
+				//newPos = new Vector3 (transform.position.x, transform.position.y + strifeAmount  , transform.position.z);
 				animationComp.Play(bounceUp.name);
 				HornSound.Play ();
 			}
 
 
-			// pass the input to the car!
-			float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-			float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+			// the left thumbstick
+			//float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+			//float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
 
 
-
-
-
-			print ("h =" +  Input.GetAxis("Xbox360ControllerDPadY")); 
-
-			//#if !MOBILE_INPUT
-			//float handbrake = CrossPlatformInputManager.GetAxis("Jump");
-			//m_Car.Move(h, v, v, handbrake);
-
-
-			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) || Input.GetAxis("Xbox360ControllerDPadY") > 0 ) {
+			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) || Input.GetAxis("Xbox360ControllerDPadY") > 0   ) {
 
 				if (transform.position.z < 36) {
 
-					newPos = new Vector3 (transform.position.x, 0, transform.position.z + laneWidth);
+					newPos = new Vector3 (transform.position.x, 0, transform.position.z + strifeAmount);
 					animationComp.Play (moveForward.name);
 				}
 			}
 
-			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S) ||  Input.GetAxis("Xbox360ControllerDPadY") < 0 ) {
+			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S) ||  Input.GetAxis("Xbox360ControllerDPadY") < 0    ) {
 
-				newPos = new Vector3 (transform.position.x,0, transform.position.z - laneWidth);
+				newPos = new Vector3 (transform.position.x,0, transform.position.z - strifeAmount);
 				animationComp.Play(moveBackwards.name);
 			}
 
 
 			if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || Input.GetAxis("Xbox360ControllerDPadX") < 0  )
                 	{
-				float x = Mathf.Clamp( transform.position.x - laneWidth,  - (laneWidth* 8.0f), 0.0f  );
+				float x = Mathf.Clamp( transform.position.x - strifeAmount,  - (strifeAmount* 15.0f), (strifeAmount* 15.0f)  );
 
-				newPos = new Vector3 (x  , 0,  transform.position.z);
+				newPos = new Vector3 (x  , 0.0f,  transform.position.z);
 				animationComp.Play(moveLeft.name);
 				/*
 				switch ( side ){
@@ -145,7 +135,7 @@ namespace VacuumShaders
 				case  SIDE.Right:
 		                    
 
-					newPos = new Vector3 (laneWidth, 0, newPosZ);
+					newPos = new Vector3 (strifeAmount, 0, newPosZ);
 					side = SIDE.MiddleRight;
 
 		                        animationComp.Play(moveLeft.name);
@@ -154,7 +144,7 @@ namespace VacuumShaders
 
 				case SIDE.MiddleRight:
 		                
-					newPos = new Vector3(  -laneWidth   , 0, newPosZ);
+					newPos = new Vector3(  -strifeAmount   , 0, newPosZ);
 					side = SIDE.MiddleLeft;
 
 		                    animationComp.Play(moveLeft.name);
@@ -163,7 +153,7 @@ namespace VacuumShaders
 
 				case SIDE.MiddleLeft:
 
-					newPos = new Vector3(  -laneWidth * 2.0f   , 0, newPosZ);
+					newPos = new Vector3(  -strifeAmount * 2.0f   , 0, newPosZ);
 					side = SIDE.Left;
 
 					animationComp.Play(moveLeft.name);
@@ -175,7 +165,7 @@ namespace VacuumShaders
 
 			if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || Input.GetAxis("Xbox360ControllerDPadX") > 0 )
                 {
-				float x = Mathf.Clamp( transform.position.x + laneWidth, 0.0f, (laneWidth* 8.0f));
+				float x =      Mathf.Clamp( transform.position.x + strifeAmount, -  (strifeAmount* 15.0f) , (strifeAmount* 15.0f));
 
 				newPos = new Vector3 ( x, 0,  transform.position.z);
 				animationComp.Play(moveRight.name);
@@ -185,7 +175,7 @@ namespace VacuumShaders
 
 					case SIDE.Left:
 				
-					newPos = new Vector3(  -laneWidth  , 0, newPosZ);
+					newPos = new Vector3(  -strifeAmount  , 0, newPosZ);
 					side = SIDE.MiddleLeft;
 
 					animationComp.Play(moveRight.name);
@@ -193,7 +183,7 @@ namespace VacuumShaders
 
 					case SIDE.MiddleLeft:
 				
-					newPos = new Vector3(  laneWidth  , 0, newPosZ);
+					newPos = new Vector3(  strifeAmount  , 0, newPosZ);
 					side = SIDE.MiddleRight;
 
 					animationComp.Play(moveRight.name);
@@ -201,7 +191,7 @@ namespace VacuumShaders
 
 					case SIDE.MiddleRight:
 				
-					newPos = new Vector3(  laneWidth * 2.0f, 0, newPosZ);
+					newPos = new Vector3(  strifeAmount * 2.0f, 0, newPosZ);
 					side = SIDE.Right;
 
 					animationComp.Play(moveRight.name);
@@ -230,19 +220,40 @@ namespace VacuumShaders
 
 		}
 
-            void OnCollisionEnter(Collision collision)
+            public void OnCollisionEnter(Collision collision)
             {
-                //Vector3 force = (Vector3.forward + Vector3.up + Random.insideUnitSphere).normalized * Random.Range(100, 150);
-                //collision.rigidbody.AddForce(force, ForceMode.Impulse);
 
-                Runner_Car car = collision.gameObject.GetComponent<Runner_Car>();
+			Runner_Chunk chunk = collision.gameObject.GetComponent<Runner_Chunk>();
+
+			if (chunk != null) {
+
+				return;
+			}
+
+			print ( "collision = " +  collision.gameObject.name + " playerH = " + playerHealth );
+
+
+                	Vector3 force = (Vector3.forward + Vector3.up + Random.insideUnitSphere).normalized * Random.Range(100, 150);
+                	collision.rigidbody.AddForce(force, ForceMode.Impulse);
+
+			if (collision.gameObject == lastHitObject) {
+
+
+				lastHitObject = null;
+				return;
+
+			}
+
+			lastHitObject = collision.gameObject;
+		
+                		Runner_Car car = collision.gameObject.GetComponent<Runner_Car>();
 				Runner_Debuff debuff = collision.gameObject.GetComponent<Runner_Debuff>();
 				Runner_Buff buff = collision.gameObject.GetComponent<Runner_Buff>();
 
 
 				if (debuff != null) {
 
-					playerHeath = playerHeath - damagePerDebuff;
+					playerHealth = playerHealth - damagePerDebuff;
 							Runner_SceneManager.get.DestroyDebuff(debuff);
 				DamageEmitter.Emit (1000);
 				DamageChildEmitter1.Emit (1000);
@@ -255,7 +266,7 @@ namespace VacuumShaders
 
 				if (buff != null) {
 
-					playerHeath = playerHeath + gainPerBuff;
+					playerHealth = playerHealth + gainPerBuff;
 							Runner_SceneManager.get.DestroyBuff(buff);
 				BuffSound.Play();
 
@@ -267,14 +278,13 @@ namespace VacuumShaders
 
 				}
 
-                if (car != null)
-                {
-					playerHeath = playerHeath - damagePerHit;
-							//Runner_SceneManager.get.DestroyCar(car);
-
-
+			if (car != null && car.Dirty == false )
+                	{
+					playerHealth = playerHealth - damagePerHit;
+					//Runner_SceneManager.get.DestroyCar(car);
 
 				car.Hit ();
+				car.MarkDirty ();
 
 				DamageEmitter.Emit (1000);
 				DamageChildEmitter1.Emit (1000);
@@ -287,7 +297,7 @@ namespace VacuumShaders
 				}
 
 
-				if (playerHeath <= 0) {
+				if (playerHealth <= 0) {
 
 					//car.speed = 0;
 
@@ -295,20 +305,17 @@ namespace VacuumShaders
 					SceneManager.LoadScene (2);
 
 				}else{
-
-
-					//Vector3 barScale = new Vector3 (  playerHeath, 1.0f, 1.0f);
-					//HealthBar.transform.localScale = barScale;
-
-				string lives = "";
-				for (int i = 0; i < playerHeath; i++) {
-
+				
+					string lives = "";
+					for (int i = 0; i < playerHealth; i++) {
 					lives = lives + "-";
 				}
 
 				LivesText.SetScore (lives);
 
+		
                 }
+                
             }
 
             //////////////////////////////////////////////////////////////////////////////

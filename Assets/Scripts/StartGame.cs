@@ -35,7 +35,7 @@ namespace VacuumShaders
 		// Use this for initialization
 		void Start () {
 
-            PlayerPrefs.SetInt ("CurrentScore",0);
+            		PlayerPrefs.SetInt ("CurrentScore",0);
 
 			GetScore() ;
 
