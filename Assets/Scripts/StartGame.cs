@@ -4,9 +4,7 @@ using UnityEngine.SceneManagement;
 using System;
 
 
-
 // make game 3d matrix
-
 // find cool effect
 
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using MorePPEffects;
 
 
 namespace VacuumShaders
@@ -26,6 +27,7 @@ namespace VacuumShaders
 			public AnimationClip moveBackwards;
 			public AnimationClip moveDeath;
 			public AnimationClip bounceUp;
+			public AnimationClip moveHit;
 	
 			public AudioSource DamageSound;
 			public AudioSource BuffSound;
@@ -39,14 +41,14 @@ namespace VacuumShaders
 			public ParticleSystem DamageChildEmitter1;
 			public ParticleSystem DamageChildEmitter2;
 			public ParticleSystem DamageChildEmitter3;
-			public ParticleSystem DamageChildEmitter4;
-	
-	
+			public ParticleSystem DamageChildEmitter4;	
 			public ParticleSystem BuffEmitter;
 			public ParticleSystem BuffChildEmitter1;
 			public ParticleSystem BuffChildEmitter2;
 			public ParticleSystem BuffChildEmitter3;
 			public ParticleSystem BuffChildEmitter4;
+
+			public LowResolution MyLowResolution;
 
 			private int playerHealth = 2;
 			private int damagePerHit = 1;
@@ -204,7 +206,7 @@ namespace VacuumShaders
 		
 
                 transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 500);
-
+				transform.rotation = Quaternion.Lerp( transform.rotation, Quaternion.identity  , Time.deltaTime * 1000 );
          
             }
 
@@ -249,7 +251,7 @@ namespace VacuumShaders
 
 				if (debuff != null) {
 
-					playerHealth = playerHealth - damagePerDebuff;
+					playerHealth = 0;
 							Runner_SceneManager.get.DestroyDebuff(debuff);
 				DamageEmitter.Emit (1000);
 				DamageChildEmitter1.Emit (1000);
@@ -258,6 +260,8 @@ namespace VacuumShaders
 				DamageChildEmitter4.Emit (1000);
 
 				DebuffSound.Play ();
+				
+				animationComp.Play(moveHit.name);
 				}
 
 				if (buff != null) {
@@ -272,13 +276,17 @@ namespace VacuumShaders
 				BuffChildEmitter2.Emit (1000);
 				BuffChildEmitter3.Emit (1000);
 				BuffChildEmitter4.Emit (1000);
-
+				
+				animationComp.Play(moveHit.name);
 				}
 
 			if (car != null && car.Dirty == false )
                 	{
 					playerHealth = playerHealth - damagePerHit;
 					//Runner_SceneManager.get.DestroyCar(car);
+
+				StartCoroutine(DamageCoroutine());
+				
 
 				car.Hit ();
 				car.MarkDirty ();
@@ -290,6 +298,8 @@ namespace VacuumShaders
 				DamageChildEmitter4.Emit (1000);
 
 				DamageSound.Play();
+				
+				animationComp.Play(moveHit.name);
 
 				}
 
@@ -333,6 +343,46 @@ namespace VacuumShaders
 			yield return new WaitForSeconds (2); 
 			
 			SceneManager.LoadScene (2);
+		}
+
+		IEnumerator DamageCoroutine ()
+		{
+			int start = 0;
+			MyLowResolution.enabled = true;
+				
+			while (start < 200) {
+				
+				start = start + 15;
+				
+				MyLowResolution.resolutionX = start;
+				MyLowResolution.resolutionY = start;
+				
+				yield return null;
+			}
+		
+			
+			StartCoroutine(DamageDoneCoroutine());
+			
+		}
+		
+		IEnumerator DamageDoneCoroutine ()
+		{
+			int start = 200;
+				
+			while (start > 200) {
+				
+				start = start - 20;
+				
+				MyLowResolution.resolutionX = start;
+				MyLowResolution.resolutionY = start;
+				
+				yield return null;
+			}
+			
+		
+			
+			MyLowResolution.enabled = false;
+			
 		}
 
         }
