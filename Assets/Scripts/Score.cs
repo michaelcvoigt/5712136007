@@ -44,7 +44,7 @@ public class Score : MonoBehaviour {
 			if (car != null)
 			{
 				MyRunner_Player.Score ();
-				Runner_SceneManager.get.DestroyCar(car);
+				//Runner_SceneManager.get.DestroyCar(car);
 			}
 
 

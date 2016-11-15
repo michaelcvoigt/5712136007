@@ -3,11 +3,9 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
 
+// make controller work
 
-
-// better damage effect
-// hit cars don't count
-
+// make cars not spawn on top of each other
 // faster spawners
 // side airplanes
 // cop cars 
@@ -27,11 +25,11 @@ using System;
 namespace VacuumShaders
 {
 
-	public class StartGame : MonoBehaviour {
+		public class StartGame : MonoBehaviour {
 
 		public CreateFont GameScore;
 		public GameScoreFont GameScoreFont;
-        public TextMesh Message;
+        	public TextMesh Message;
 
 
 		// Use this for initialization

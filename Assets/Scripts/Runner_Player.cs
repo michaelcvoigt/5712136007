@@ -36,6 +36,17 @@ namespace VacuumShaders
 		public GameScoreFont LivesText;
 
 		public ParticleSystem DamageEmitter;
+		public ParticleSystem DamageChildEmitter1;
+		public ParticleSystem DamageChildEmitter2;
+		public ParticleSystem DamageChildEmitter3;
+		public ParticleSystem DamageChildEmitter4;
+
+
+		public ParticleSystem BuffEmitter;
+		public ParticleSystem BuffChildEmitter1;
+		public ParticleSystem BuffChildEmitter2;
+		public ParticleSystem BuffChildEmitter3;
+		public ParticleSystem BuffChildEmitter4;
 
 			private int playerHeath = 2;
 			private int damagePerHit = 1;
@@ -60,6 +71,7 @@ namespace VacuumShaders
             // Use this for initialization
             void Start()
             {
+
                 side = SIDE.MiddleLeft;
 			transform.position = new Vector3(- laneWidth   , 0, 0); 
 
@@ -89,7 +101,7 @@ namespace VacuumShaders
 
 			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) || OVRInput.Get (OVRInput.RawAxis2D.RThumbstick).y < 0) {
 
-				if (transform.position.z < 100) {
+				if (transform.position.z < 36) {
 
 					newPos = new Vector3 (transform.position.x, 0, transform.position.z + laneWidth);
 					animationComp.Play (moveForward.name);
@@ -216,6 +228,10 @@ namespace VacuumShaders
 					playerHeath = playerHeath - damagePerDebuff;
 							Runner_SceneManager.get.DestroyDebuff(debuff);
 				DamageEmitter.Emit (1000);
+				DamageChildEmitter1.Emit (1000);
+				DamageChildEmitter2.Emit (1000);
+				DamageChildEmitter3.Emit (1000);
+				DamageChildEmitter4.Emit (1000);
 
 				DebuffSound.Play ();
 				}
@@ -225,6 +241,13 @@ namespace VacuumShaders
 					playerHeath = playerHeath + gainPerBuff;
 							Runner_SceneManager.get.DestroyBuff(buff);
 				BuffSound.Play();
+
+				BuffEmitter.Emit (1000);
+				BuffChildEmitter1.Emit (1000);
+				BuffChildEmitter2.Emit (1000);
+				BuffChildEmitter3.Emit (1000);
+				BuffChildEmitter4.Emit (1000);
+
 				}
 
                 if (car != null)
@@ -232,7 +255,15 @@ namespace VacuumShaders
 					playerHeath = playerHeath - damagePerHit;
 							//Runner_SceneManager.get.DestroyCar(car);
 
+
+
+				car.Hit ();
+
 				DamageEmitter.Emit (1000);
+				DamageChildEmitter1.Emit (1000);
+				DamageChildEmitter2.Emit (1000);
+				DamageChildEmitter3.Emit (1000);
+				DamageChildEmitter4.Emit (1000);
 
 				DamageSound.Play();
 

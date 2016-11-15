@@ -110,6 +110,12 @@ using VacuumShaders.CurvedWorld;
 				}
             } 
 
+		void CreateSpawnPoints(){
+
+			GameObject go = new GameObject ("Empty");
+
+		}
+
             // Use this for initialization
             void Start()
             {
@@ -201,13 +207,15 @@ using VacuumShaders.CurvedWorld;
 				lastChunkRight.transform.position = newPos;
 			}
 
-            public void DestroyCar(Runner_Car car)
+		public void DestroyCar(Runner_Car car, bool scoreCounts)
             {
                 GameObject.Destroy(car.gameObject);
 
                 Instantiate(  cars[ Random.Range(0, cars.Length)]  );
 
-		MyRunner_Player.Score ();
+			if (scoreCounts) {
+				MyRunner_Player.Score ();
+			}
             }
 
 			public void DestroyBuff(Runner_Buff buff)
