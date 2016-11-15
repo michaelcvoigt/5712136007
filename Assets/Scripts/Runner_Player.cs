@@ -22,35 +22,37 @@ namespace VacuumShaders
 	            Animation animationComp;
 	            public AnimationClip moveLeft;
 	            public AnimationClip moveRight;
-		public AnimationClip moveForward;
-		public AnimationClip moveBackwards;
-		public AnimationClip bounceUp;
+			public AnimationClip moveForward;
+			public AnimationClip moveBackwards;
+			public AnimationClip moveDeath;
+			public AnimationClip bounceUp;
+	
+			public AudioSource DamageSound;
+			public AudioSource BuffSound;
+			public AudioSource DebuffSound;
+			public AudioSource HornSound;
+			//public GameObject HealthBar;
+			public GameScoreFont ScoreText;
+			public GameScoreFont LivesText;
+	
+			public ParticleSystem DamageEmitter;
+			public ParticleSystem DamageChildEmitter1;
+			public ParticleSystem DamageChildEmitter2;
+			public ParticleSystem DamageChildEmitter3;
+			public ParticleSystem DamageChildEmitter4;
+	
+	
+			public ParticleSystem BuffEmitter;
+			public ParticleSystem BuffChildEmitter1;
+			public ParticleSystem BuffChildEmitter2;
+			public ParticleSystem BuffChildEmitter3;
+			public ParticleSystem BuffChildEmitter4;
 
-		public AudioSource DamageSound;
-		public AudioSource BuffSound;
-		public AudioSource DebuffSound;
-		public AudioSource HornSound;
-		//public GameObject HealthBar;
-		public GameScoreFont ScoreText;
-		public GameScoreFont LivesText;
-
-		public ParticleSystem DamageEmitter;
-		public ParticleSystem DamageChildEmitter1;
-		public ParticleSystem DamageChildEmitter2;
-		public ParticleSystem DamageChildEmitter3;
-		public ParticleSystem DamageChildEmitter4;
-
-
-		public ParticleSystem BuffEmitter;
-		public ParticleSystem BuffChildEmitter1;
-		public ParticleSystem BuffChildEmitter2;
-		public ParticleSystem BuffChildEmitter3;
-		public ParticleSystem BuffChildEmitter4;
-
-			private int playerHealth = 100;
+			private int playerHealth = 2;
 			private int damagePerHit = 1;
-			private int damagePerDebuff = 3;
+			private int damagePerDebuff = 2;
 			private int gainPerBuff = 1;
+			private int scorePerBuff = 1;
 			private int playerScore = 0;
 
 		private static float strifeAmount = 1.0f;
@@ -66,8 +68,8 @@ namespace VacuumShaders
             void Awake()
             {
                 get = this;
-
-			ScoreText.SetScore( "0" );
+				UpdateUI();
+				ScoreText.SetScore( playerScore.ToString());
             }
 
             // Use this for initialization
@@ -75,12 +77,12 @@ namespace VacuumShaders
             {
 
                	side = SIDE.MiddleLeft;
-		transform.position = new Vector3(- strifeAmount   , 0, 0); 
+				transform.position = new Vector3(- strifeAmount   , 0, 0); 
                 newPos = transform.position;
 
                 animationComp = GetComponent<Animation>();
 
-                //Physics.gravity = new Vector3(0, -50, 0);
+                Physics.gravity = new Vector3(0, -50, 0);
             }
 		/*
             void OnDisable()
@@ -90,23 +92,17 @@ namespace VacuumShaders
             }*/
 
             // Update is called once per frame
-            void Update()
-            {
+            void Update ()
+		{
 
 			if (Input.GetKeyDown (KeyCode.Space)) {
 
 				//newPos = new Vector3 (transform.position.x, transform.position.y + strifeAmount  , transform.position.z);
-				animationComp.Play(bounceUp.name);
+				animationComp.Play (bounceUp.name);
 				HornSound.Play ();
 			}
 
-
-			// the left thumbstick
-			//float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-			//float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
-
-
-			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) || Input.GetAxis("Xbox360ControllerDPadY") > 0   ) {
+			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) || Input.GetAxis ("Xbox360ControllerDPadY") > 0) {
 
 				if (transform.position.z < 36) {
 
@@ -115,19 +111,22 @@ namespace VacuumShaders
 				}
 			}
 
-			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S) ||  Input.GetAxis("Xbox360ControllerDPadY") < 0    ) {
+			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S) || Input.GetAxis ("Xbox360ControllerDPadY") < 0) {
 
-				newPos = new Vector3 (transform.position.x,0, transform.position.z - strifeAmount);
-				animationComp.Play(moveBackwards.name);
+				if (transform.position.z > -10) {
+					newPos = new Vector3 (transform.position.x, 0, transform.position.z - strifeAmount);
+					animationComp.Play (moveBackwards.name);
+				}
 			}
 
 
-			if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || Input.GetAxis("Xbox360ControllerDPadX") < 0  )
-                	{
+			if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || Input.GetAxis("Xbox360ControllerDPadX") < 0  ){
+                	
 				float x = Mathf.Clamp( transform.position.x - strifeAmount,  - (strifeAmount* 15.0f), (strifeAmount* 15.0f)  );
 
 				newPos = new Vector3 (x  , 0.0f,  transform.position.z);
 				animationComp.Play(moveLeft.name);
+				
 				/*
 				switch ( side ){
 
@@ -163,9 +162,9 @@ namespace VacuumShaders
 				*/
                 }
 
-			if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || Input.GetAxis("Xbox360ControllerDPadX") > 0 )
-                {
-				float x =      Mathf.Clamp( transform.position.x + strifeAmount, -  (strifeAmount* 15.0f) , (strifeAmount* 15.0f));
+			if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || Input.GetAxis("Xbox360ControllerDPadX") > 0 ){
+			
+				float x = Mathf.Clamp( transform.position.x + strifeAmount, -  (strifeAmount* 15.0f) , (strifeAmount* 15.0f));
 
 				newPos = new Vector3 ( x, 0,  transform.position.z);
 				animationComp.Play(moveRight.name);
@@ -204,7 +203,7 @@ namespace VacuumShaders
                 }
 		
 
-                transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 10);
+                transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 500);
 
          
             }
@@ -215,7 +214,6 @@ namespace VacuumShaders
 
 			playerScore++;
 			ScoreText.SetScore( playerScore.ToString());
-
 			Runner_SceneManager.IncreaseSpeed ();
 
 		}
@@ -229,8 +227,6 @@ namespace VacuumShaders
 
 				return;
 			}
-
-			print ( "collision = " +  collision.gameObject.name + " playerH = " + playerHealth );
 
 
                 	Vector3 force = (Vector3.forward + Vector3.up + Random.insideUnitSphere).normalized * Random.Range(100, 150);
@@ -266,8 +262,9 @@ namespace VacuumShaders
 
 				if (buff != null) {
 
-					playerHealth = playerHealth + gainPerBuff;
-							Runner_SceneManager.get.DestroyBuff(buff);
+					playerScore = playerScore + scorePerBuff;
+					//playerHealth = playerHealth + gainPerBuff;
+					Runner_SceneManager.get.DestroyBuff(buff);
 				BuffSound.Play();
 
 				BuffEmitter.Emit (1000);
@@ -302,26 +299,44 @@ namespace VacuumShaders
 					//car.speed = 0;
 
 					PlayerPrefs.SetInt ("CurrentScore", playerScore);
-					SceneManager.LoadScene (2);
-
-				}else{
-				
-					string lives = "";
-					for (int i = 0; i < playerHealth; i++) {
-					lives = lives + "-";
+					
+					newPos = new Vector3 (transform.position.x, 0, transform.position.z - strifeAmount);
+					animationComp.Play (moveDeath.name);
+					
+					LivesText.SetScore ("GameOver");
+					
+					StartCoroutine(OnCollisionCoroutine());
+					
+					
+					return;
 				}
-
-				LivesText.SetScore (lives);
-
+				
+					UpdateUI ();
 		
-                }
-                
             }
+            
+            
+            public void UpdateUI()
+			{
+                string lives = "";
+                
+				for (int i = 0; i < playerHealth; i++) {
+					lives = lives + "-";
+				};
+				
+                LivesText.SetScore (lives);
+			}
 
-            //////////////////////////////////////////////////////////////////////////////
-            //                                                                          // 
-            //Custom Functions                                                          //
-            //                                                                          //               
-            //////////////////////////////////////////////////////////////////////////////
+
+        IEnumerator OnCollisionCoroutine ()
+		{
+			yield return new WaitForSeconds (2); 
+			
+			SceneManager.LoadScene (2);
+		}
+
         }
+        
+        
+     
     }

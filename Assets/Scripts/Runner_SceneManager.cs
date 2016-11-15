@@ -28,6 +28,7 @@ public GameObject[] chunksRight;
 public GameObject[] cars;
 public GameObject[] buffs;
 public GameObject[] debuffs;
+public GameObject[] planes;
 
 public AudioClip SpawnSound;
 
@@ -35,6 +36,9 @@ public CurvedWorld_Controller curvedWorld_Controller;
 
 static public float chunkSize = 60;
 static public Vector3 moveVector = new Vector3(0, 0, -1);
+
+static public Vector3 sideMoveVector = new Vector3(-1, 0, 0);
+
 static public GameObject lastChunk;
 static public GameObject lastChunkRight;
 static public GameObject lastChunkLeft;
@@ -49,9 +53,14 @@ static public float speed;
 static private float increaseFactor = 1.001f;
 
 static private int currentSpawnRow = 0;
-static private string[] levels = new string[8];
+
+static private string[] levels = new string[16];
+static private string[] sides = new string[16];
+
 static private float spawnSpacingX = 3.40f;
 static private float spawnStartX = -15.5f;
+static private float spawnSideStartX = 100;
+
 		static private float distanceBetweenSpawns = 0.5f;
 		static private float distanceSinceLastSpawn = 0.0f;
 
@@ -66,45 +75,78 @@ static private float spawnStartX = -15.5f;
 
 void Start(){
 
-			levels [0] = "1--2-----0";
-			levels [1] = "-----5----";
-			levels [2] = "-2-----3--";
-			levels [3] = "---a------";
-			levels [4] = "------1-6-";
-			levels [5] = "3-b-3----1";
-			levels [6] = "-----!3---";
-			levels [7] = "--12----!-";
-			//Instantiate cars
-/*for (int i = 0; i < cars.Length; i++)
-{
-
-SpawnRow (0);
-
-//GameObject spawnedCar = Instantiate(  cars[i] , GetRandomSpawnVector() , Quaternion.identity ) as GameObject;
-
-//Runner_Car spawnedRunner_Car = spawnedCar.GetComponent<Runner_Car> ();
-//spawnedRunner_Car.speed = Random.Range(2f, 6f);
-
+			levels [0] =    "1--2-----0";
+			levels [1] =    "-----5----";
+			levels [2] =    "-2-----3--";
+			levels [3] =    "---12-----";
+			levels [4] =    "------1-6-";
+			levels [5] =    "3---3----1";
+			levels [6] =    "-4---!3---";
+			levels [7] =    "--0--6----";
+			levels [8] =    "-3--5---!-";
+			levels [9] =    "--02------";
+			levels [10] =   "4-1-1-0---";
+			levels [11] =   "--12--a-!-";
+			levels [12] =   "1---6--3--";
+			levels [13] =   "2-3-2--4-0";
+			levels [14] =   "b---6---!-";
+			levels [15] =   "-6146-2--4";
+			
+			sides [0] =    "----------";
+			sides [1] =    "----------";
+			sides [2] =    "----------";
+			sides [3] =    "----------";
+			sides [4] =    "----------";
+			sides [5] =    "----------";
+			sides [6] =    "----------";
+			sides [7] =    "----------";
+			sides [8] =    "----------";
+			sides [9] =    "----------";
+			sides [10] =   "----------";
+			sides [11] =   "----------";
+			sides [12] =   "---0------";
+			sides [13] =   "----------";
+			sides [14] =   "----------";
+			sides [15] =   "--------0-";
+			
 
 }
 
-Renderer[] renderers = FindObjectsOfType(typeof(Renderer)) as Renderer[];
+void SpawnSide (int rowNumber)
+		{
 
-listMaterials = new List<Material>();
-foreach (Renderer _renderer in renderers)
-{
-listMaterials.AddRange(_renderer.sharedMaterials);
+
+			var chars = sides [rowNumber].ToCharArray ();
+
+			float offsetX = 0.0f;
+
+			foreach (char character in chars) {
+
+				string tryCharacter = character.ToString ();
+				Vector3 spawnLocation = new Vector3 ( spawnSideStartX + offsetX ,1,0   );
+
+				if (tryCharacter != "-") {
+
+					int planeIndex = System.Int32.Parse( tryCharacter );
+
+					GameObject spawnedPlane = Instantiate(  planes[planeIndex] , spawnLocation, Quaternion.identity ) as GameObject;
+
+					Runner_Plane spawnedRunner_Plane = spawnedPlane.GetComponent<Runner_Plane> ();
+					spawnedRunner_Plane.speed = speed;
+					
+				}
+
+				offsetX = offsetX + spawnSpacingX;
+
+			}
+
+			distanceSinceLastSpawn = 0.0f;
 }
 
-listMaterials = listMaterials.Distinct().ToList();
-
-*/
-
-}
 
 void SpawnRow (int rowNumber)
 		{
-
+			SpawnSide(rowNumber);
 
 			var chars = levels [rowNumber].ToCharArray ();
 
@@ -127,7 +169,7 @@ void SpawnRow (int rowNumber)
 							GameObject spawnedBuff = Instantiate(  buffs[0] , spawnLocation, Quaternion.identity ) as GameObject;
 							
 							Runner_Buff spawnedRunner_Buff = spawnedBuff.GetComponent<Runner_Buff> ();
-							spawnedRunner_Buff.speed = 2.0f;  //Random.Range(2f, 2f);
+							spawnedRunner_Buff.speed = speed; 
 						}
 						
 						if (tryCharacter == "b") {
@@ -136,7 +178,7 @@ void SpawnRow (int rowNumber)
 							GameObject spawnedBuff = Instantiate(  buffs[1] , spawnLocation, Quaternion.identity ) as GameObject;
 							
 							Runner_Buff spawnedRunner_Buff = spawnedBuff.GetComponent<Runner_Buff> ();
-							spawnedRunner_Buff.speed = 2.0f;  //Random.Range(2f, 2f);
+							spawnedRunner_Buff.speed = speed;  
 						}
 						
 						if (tryCharacter == "!") {
@@ -145,7 +187,7 @@ void SpawnRow (int rowNumber)
 							GameObject spawnedDeBuff = Instantiate(  debuffs[0] , spawnLocation, Quaternion.identity ) as GameObject;
 							
 							Runner_Debuff spawnedRunner_Debuff = spawnedDeBuff.GetComponent<Runner_Debuff> ();
-							spawnedRunner_Debuff.speed = 2.0f;  //Random.Range(2f, 2f);
+							spawnedRunner_Debuff.speed = speed;
 						}
 					
 						break;
@@ -158,12 +200,7 @@ void SpawnRow (int rowNumber)
 					GameObject spawnedCar = Instantiate(  cars[carIndex] , spawnLocation, Quaternion.identity ) as GameObject;
 
 					Runner_Car spawnedRunner_Car = spawnedCar.GetComponent<Runner_Car> ();
-					spawnedRunner_Car.speed = 2.0f;  //Random.Range(2f, 2f);
-					
-					
-					
-					
-					
+					spawnedRunner_Car.speed = speed;
 					
 				}
 
@@ -298,6 +335,12 @@ newPos.z += sideChunkSize;
 lastChunkRight = moveElement.gameObject;
 lastChunkRight.transform.position = newPos;
 }
+
+public void DestroyPlane (Runner_Plane plane, bool scoreCounts)
+		{
+			GameObject.Destroy (plane.gameObject);
+
+		}
 
 public void DestroyCar(Runner_Car car, bool scoreCounts)
 {

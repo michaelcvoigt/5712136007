@@ -83,17 +83,17 @@ public class GameOver : MonoBehaviour {
 
 					PlayerPrefs.SetInt ("HighScore", Score);
 					PostScore (Score);
-					HighScore.text = "Server High Score =" + Score;
+					HighScore.text = "You Got the World's HighScore!!! " + Score;
 				}
 				else{
 
-					HighScore.text = "Server High Score =" + serverHighScore;
+					HighScore.text = "Server HighScore :" + serverHighScore + " \n Your HighScore : " + Score;
 
 				}
 
 
 				GameScore.SetScore(Score.ToString());
-				// = "Your Score =" + 
+				// = "Your Score :" + 
 				postingScore = false;
 
 			};

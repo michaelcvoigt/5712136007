@@ -4,14 +4,14 @@ using UnityEngine.SceneManagement;
 using System;
 
 
-// stop cars from floating - not mounted to road
+
+// make game 3d matrix
+
+// find cool effect
 
 
-// make cars not spawn on top of each other
-// faster spawners
-// side airplanes
+// side tweaked
 // cop cars 
-// defined spawning
 
 // secure highScore
 // hook up facebook
