@@ -2,7 +2,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-
+using UnityStandardAssets.CrossPlatformInput;
+using UnitySampleAssets.CrossPlatformInput;
 
 namespace VacuumShaders
     {
@@ -99,7 +100,23 @@ namespace VacuumShaders
 				HornSound.Play ();
 			}
 
-			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) || OVRInput.Get (OVRInput.RawAxis2D.RThumbstick).y < 0) {
+
+			// pass the input to the car!
+			float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+			float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+
+
+
+
+
+			print ("h =" +  Input.GetAxis("Xbox360ControllerDPadY")); 
+
+			//#if !MOBILE_INPUT
+			//float handbrake = CrossPlatformInputManager.GetAxis("Jump");
+			//m_Car.Move(h, v, v, handbrake);
+
+
+			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) || Input.GetAxis("Xbox360ControllerDPadY") > 0 ) {
 
 				if (transform.position.z < 36) {
 
@@ -108,14 +125,14 @@ namespace VacuumShaders
 				}
 			}
 
-			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S) || OVRInput.Get (OVRInput.RawAxis2D.RThumbstick).y > 0) {
+			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S) ||  Input.GetAxis("Xbox360ControllerDPadY") < 0 ) {
 
 				newPos = new Vector3 (transform.position.x,0, transform.position.z - laneWidth);
 				animationComp.Play(moveBackwards.name);
 			}
 
 
-			if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) ||   OVRInput.Get(OVRInput.RawAxis2D.RThumbstick).x < 0  )
+			if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || Input.GetAxis("Xbox360ControllerDPadX") < 0  )
                 	{
 				float x = Mathf.Clamp( transform.position.x - laneWidth,  - (laneWidth* 8.0f), 0.0f  );
 
@@ -156,7 +173,7 @@ namespace VacuumShaders
 				*/
                 }
 
-		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) ||   OVRInput.Get(OVRInput.RawAxis2D.RThumbstick).x > 0)
+			if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || Input.GetAxis("Xbox360ControllerDPadX") > 0 )
                 {
 				float x = Mathf.Clamp( transform.position.x + laneWidth, 0.0f, (laneWidth* 8.0f));
 
