@@ -4,10 +4,25 @@ using UnityEngine.SceneManagement;
 using System;
 
 
-// cop cars 
-// fix rotated cars
-// fix side worlds
 
+// better damage effect
+// hit cars don't count
+
+// faster spawners
+// side airplanes
+// cop cars 
+// defined spawning
+
+// secure highScore
+// hook up facebook
+
+
+// balance game
+
+// wrong way var logo
+// 3d keys for intro
+// make start screen look good 
+// make end screen look good
 
 namespace VacuumShaders
 {

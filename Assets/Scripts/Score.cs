@@ -22,8 +22,8 @@ public class Score : MonoBehaviour {
 
 		void OnCollisionEnter(Collision collision)
 		{
-			Vector3 force = (Vector3.forward + Vector3.up + Random.insideUnitSphere).normalized * Random.Range (100, 150);
-			collision.rigidbody.AddForce (force, ForceMode.Impulse);
+			//Vector3 force = (Vector3.forward + Vector3.up + Random.insideUnitSphere).normalized * Random.Range (100, 150);
+			//collision.rigidbody.AddForce (force, ForceMode.Impulse);
 
 			Runner_Car car = collision.gameObject.GetComponent<Runner_Car> ();
 			Runner_Debuff debuff = collision.gameObject.GetComponent<Runner_Debuff> ();

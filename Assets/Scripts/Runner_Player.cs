@@ -67,15 +67,14 @@ namespace VacuumShaders
 
                 animationComp = GetComponent<Animation>();
 
-
-                Physics.gravity = new Vector3(0, -50, 0);
+                //Physics.gravity = new Vector3(0, -50, 0);
             }
-
+		/*
             void OnDisable()
             {
-                //Restor gravity
+                //Restore gravity
                 Physics.gravity = new Vector3(0, -9.8f, 0);
-            }
+            }*/
 
             // Update is called once per frame
             void Update()
@@ -90,9 +89,11 @@ namespace VacuumShaders
 
 			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) || OVRInput.Get (OVRInput.RawAxis2D.RThumbstick).y < 0) {
 
+				if (transform.position.z < 100) {
 
-				newPos = new Vector3 (transform.position.x,0, transform.position.z + laneWidth);
-				animationComp.Play(moveForward.name);
+					newPos = new Vector3 (transform.position.x, 0, transform.position.z + laneWidth);
+					animationComp.Play (moveForward.name);
+				}
 			}
 
 			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S) || OVRInput.Get (OVRInput.RawAxis2D.RThumbstick).y > 0) {
@@ -210,8 +211,6 @@ namespace VacuumShaders
 				Runner_Buff buff = collision.gameObject.GetComponent<Runner_Buff>();
 
 
-
-
 				if (debuff != null) {
 
 					playerHeath = playerHeath - damagePerDebuff;
@@ -244,8 +243,8 @@ namespace VacuumShaders
 
 					//car.speed = 0;
 
-				PlayerPrefs.SetInt ("CurrentScore", playerScore);
-				SceneManager.LoadScene (2);
+					PlayerPrefs.SetInt ("CurrentScore", playerScore);
+					SceneManager.LoadScene (2);
 
 				}else{
 
@@ -260,7 +259,6 @@ namespace VacuumShaders
 				}
 
 				LivesText.SetScore (lives);
-
 
                 }
             }

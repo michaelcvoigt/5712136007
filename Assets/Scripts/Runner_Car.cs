@@ -27,7 +27,11 @@ namespace VacuumShaders
 
                 float roadWidth = Runner_SceneManager.RoadWidth;
 
-           	transform.position = new Vector3(Random.Range(-roadWidth, roadWidth), 1, Random.Range(140, 240));
+           	//transform.position = new Vector3(Random.Range(-roadWidth, roadWidth), 1, Random.Range(140, 240));
+
+
+			transform.position = new Vector3(Random.Range(-roadWidth, roadWidth), 0.0f, Random.Range(140, 240));
+
                 speed = Random.Range(2f, 6f);
 
             }
@@ -37,7 +41,7 @@ namespace VacuumShaders
                 rigidBody.MovePosition(transform.position + Runner_SceneManager.moveVector * Runner_SceneManager.speed * Time.deltaTime * speed);
 
 
-                if (transform.position.y < -10)
+			if (transform.position.z < -  Runner_SceneManager.BackDistance    )
                 {
                     Runner_SceneManager.get.DestroyCar(this);
                 }
