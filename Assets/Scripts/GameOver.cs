@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
-
+using System.IO;
 
 namespace VacuumShaders
 {
@@ -12,6 +12,7 @@ public class GameOver : MonoBehaviour {
 		public GameScoreFont GameScore;
         public TextMesh HighScore;
 
+		private Texture ShareImage;
 
 		private bool postingScore = false;
 
@@ -116,6 +117,60 @@ public class GameOver : MonoBehaviour {
 
 		}
 
+		/*
+		public void Share()
+     {
+
+					FB.Init();
+					//FB.Login("public_profile,email,user_friends", LoginCallback);
+
+         if(!ShareImage)
+         {
+             StartCoroutine(ShareImageShot());
+         }
+     }
+ 
+     IEnumerator ShareImageShot()
+     {
+         ShareImage = true;
+ 
+         yield return new WaitForEndOfFrame();
+         Texture2D screenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, true);
+         
+         screenTexture.ReadPixels(new Rect(0f, 0f, Screen.width, Screen.height),0,0);
+         
+         screenTexture.Apply();
+         
+         byte[] dataToSave = screenTexture.EncodeToPNG();
+         
+         string destination = Path.Combine(Application.persistentDataPath, Screenshot_Name);
+         
+         File.WriteAllBytes(destination, dataToSave);
+         
+         var wwwForm = new WWWForm();
+         wwwForm.AddBinaryData("image", dataToSave, "InteractiveConsole.png");
+         
+         FB.API("me/photos", Facebook.HttpMethod.POST, Callback, wwwForm);
+ 
+     }
+ 
+     private Texture2D lastResponseTexture;
+     private string lastResponse = "";
+     private string ApiQuery = "";
+     void Callback(FBResult result)
+     {
+         lastResponseTexture = null;
+         if (result.Error != null)
+             lastResponse = "Error Response:\n" + result.Error;
+         else if (!ApiQuery.Contains("/picture"))
+             lastResponse = "Success Response:\n" + result.Text;
+         else
+         {
+             lastResponseTexture = result.Texture;
+             lastResponse = "Success Response:\n";
+         }
+     }
+     */
 
 }
 

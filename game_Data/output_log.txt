@@ -18,7 +18,7 @@ Platform assembly: C:\Users\Michael Voigt\Documents\5712136007\Game_Data\Managed
 Loading C:\Users\Michael Voigt\Documents\5712136007\Game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Michael Voigt\Documents\5712136007\Game_Data\Managed\VacuumShaders.CurvedWorld.dll (this message is harmless)
 Loading C:\Users\Michael Voigt\Documents\5712136007\Game_Data\Managed\VacuumShaders.CurvedWorld.dll into Unity Child Domain
-- Completed reload, in  0.052 seconds
+- Completed reload, in  0.053 seconds
 Platform assembly: C:\Users\Michael Voigt\Documents\5712136007\Game_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Michael Voigt\Documents\5712136007\Game_Data\Managed\System.dll (this message is harmless)
 OnLevelWasLoaded was found on OVRScreenFade
@@ -37,53 +37,7 @@ GfxDevice: creating device client; threaded=1
 GfxDevice: creating device client; threaded=1
 GfxDevice: creating device client; threaded=1
 GfxDevice: creating device client; threaded=1
-UnloadTime: 1.229221 ms
+UnloadTime: 0.983737 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1030 -> priority: 1 
-  Thread -> id: 3210 -> priority: 1 
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.472638 ms
-
-Unloading 192 unused Assets to reduce memory usage. Loaded Objects now: 4004.
-Total: 1.019794 ms (FindLiveObjects: 0.285446 ms CreateObjectMapping: 0.081727 ms MarkObjects: 0.411042 ms  DeleteObjects: 0.240676 ms)
-
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.970781 ms
-
-Unloading 156 unused Assets to reduce memory usage. Loaded Objects now: 1205.
-Total: 0.524319 ms (FindLiveObjects: 0.060694 ms CreateObjectMapping: 0.038760 ms MarkObjects: 0.178479 ms  DeleteObjects: 0.245784 ms)
-
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-GfxDevice: creating device client; threaded=1
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.371981 ms
-
-Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 1203.
-Total: 0.443793 ms (FindLiveObjects: 0.119286 ms CreateObjectMapping: 0.047173 ms MarkObjects: 0.252094 ms  DeleteObjects: 0.024638 ms)
-
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.375587 ms
-
-Unloading 188 unused Assets to reduce memory usage. Loaded Objects now: 4005.
-Total: 0.832000 ms (FindLiveObjects: 0.164957 ms CreateObjectMapping: 0.046572 ms MarkObjects: 0.382197 ms  DeleteObjects: 0.237671 ms)
-
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.579569 ms
-
-Unloading 168 unused Assets to reduce memory usage. Loaded Objects now: 1206.
-Total: 0.583812 ms (FindLiveObjects: 0.080525 ms CreateObjectMapping: 0.033352 ms MarkObjects: 0.212432 ms  DeleteObjects: 0.256901 ms)
-
+  Thread -> id: 3394 -> priority: 1 
+  Thread -> id: 1af4 -> priority: 1 
