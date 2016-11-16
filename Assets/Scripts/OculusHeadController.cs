@@ -2,7 +2,7 @@ using UnityEngine;
 using VR = UnityEngine.VR;
 using System.Collections;
 using UnityEngine.VR;
-
+using UnityEngine.SceneManagement;
 
 public class OculusHeadController : MonoBehaviour 
 {
@@ -21,13 +21,20 @@ public class OculusHeadController : MonoBehaviour
 	void Update ()
 	{
 
+			if (Input.GetKey(KeyCode.Escape) ) {
+
+				SceneManager.LoadScene (0);
+			}
+
+
 		if( !OVRPlugin.userPresent ){
 
+			Time.timeScale = 0.0f;
 			VR.InputTracking.Recenter ();
 
 		}else{
 
-
+			Time.timeScale = 1.0f;
 
 		if ( AllowMovement   )
 		{

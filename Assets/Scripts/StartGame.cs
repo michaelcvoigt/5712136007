@@ -4,7 +4,11 @@ using UnityEngine.SceneManagement;
 using System;
 
 
-// make game 3d matrix
+
+
+// turn off keys in fly mode
+
+// get airplane
 // find cool effect
 
 
@@ -13,7 +17,6 @@ using System;
 
 // secure highScore
 // hook up facebook
-
 
 // balance game
 
@@ -39,22 +42,24 @@ namespace VacuumShaders
 
 			GetScore() ;
 
-           		 Message.text = "Press Any Key To Start";
+           		 Message.text = "Press < to Drive \n or > to Fly!";
 		}
 
 		// Update is called once per frame
 		void Update ()
 		{
 
-
-			if (Input.anyKey) {
+			if (Input.GetKey(KeyCode.LeftArrow) ) {
 
 				SceneManager.LoadScene (1);
 			}
 
+			if (Input.GetKey(KeyCode.RightArrow) ){
+
+				SceneManager.LoadScene (3);
+			}
 		}
 	
-
 
 	public void GetScore() {
 
@@ -67,11 +72,6 @@ namespace VacuumShaders
 		};
 
 		Action<string, string> fail = (string data, string error) => {
-
-
-			//if (!string.IsNullOrEmpty(error)) {
-
-			//}
 
 			string msg = data + (string.IsNullOrEmpty(error) ? "" : " : "  + error);
 
