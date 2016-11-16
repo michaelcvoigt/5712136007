@@ -48,7 +48,7 @@ static public float sideChunkWidth= 195.0f;
 static public float BackDistance = 180.0f;
 
 static public float RoadWidth = 15.0f;
-static public float speed;
+static public float speed = 4.0f;
 
 static private float increaseFactor = 1.001f;
 
@@ -64,7 +64,7 @@ static private float spawnSideStartX = 100;
 static public float spawnYHeight = 2.5f;
 		static public float spawnStartY = -10.0f;
 
-		static private float distanceBetweenSpawns = 0.5f;
+		static private float distanceBetweenSpawns = 1.5f;
 		static private float distanceSinceLastSpawn = 0.0f;
 
 		static public float chunkStartY = -8.0f;
@@ -273,7 +273,7 @@ curvedWorld_Controller.SetBend (worldBend);
 
 void Awake()
 {
-speed = 8.0f;
+
 get = this;
 Physics.gravity = new Vector3(0, -50, 0);
 

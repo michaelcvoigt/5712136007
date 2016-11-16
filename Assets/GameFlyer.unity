@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.57462686, g: 0.57462686, b: 0.57462686, a: 1}
   m_AmbientIntensity: 0
   m_AmbientMode: 3
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 57eb748cb63f24890b2547dcad9861f1, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2068,7 +2068,7 @@ Camera:
   m_GameObject: {fileID: 853553266}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -2119,10 +2119,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualizeFocus: 0
-  focalLength: 11.77
-  focalSize: 0.63
-  aperture: 22
-  focalTransform: {fileID: 0}
+  focalLength: 5
+  focalSize: 0.3
+  aperture: 11
+  focalTransform: {fileID: 676730133}
   maxBlurSize: 2
   highResolution: 0
   blurType: 1
@@ -2429,7 +2429,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.8742393, b: 0.5441177, a: 1}
   m_Intensity: 0.75
   m_Range: 10
   m_SpotAngle: 30
@@ -2734,11 +2734,11 @@ MonoBehaviour:
   - {fileID: 149138, guid: 27679125c3057904980c9ce834a21555, type: 2}
   cars:
   - {fileID: 110142, guid: 08c4abe910800b044b9a728b29940649, type: 2}
-  - {fileID: 110438, guid: e47056416d0358c48aeef59e1fbd9c69, type: 2}
-  - {fileID: 185446, guid: fb4bfdf426c83c5419cabac8c9f6581a, type: 2}
-  - {fileID: 128710, guid: 8ebb28e25b6d8c14c8fb96af62973189, type: 2}
-  - {fileID: 142106, guid: cd6ab9cb62937e54198feefa58d14c3f, type: 2}
-  - {fileID: 195246, guid: ac0a457ac8607a847bb43219e8dcc9ee, type: 2}
+  - {fileID: 110142, guid: 08c4abe910800b044b9a728b29940649, type: 2}
+  - {fileID: 110142, guid: 08c4abe910800b044b9a728b29940649, type: 2}
+  - {fileID: 110142, guid: 08c4abe910800b044b9a728b29940649, type: 2}
+  - {fileID: 110142, guid: 08c4abe910800b044b9a728b29940649, type: 2}
+  - {fileID: 110142, guid: 08c4abe910800b044b9a728b29940649, type: 2}
   - {fileID: 138884, guid: 88f5daa6c99e52a4582764de4e2a4e5f, type: 2}
   buffs:
   - {fileID: 195246, guid: 78a4636d7de2d9444b8d246c929d9f3f, type: 2}

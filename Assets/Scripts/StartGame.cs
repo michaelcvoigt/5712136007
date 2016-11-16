@@ -3,12 +3,10 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
 
-// turn off keys in fly mode ?
 
-
+// fix flicker on start screen
+// turn off keys in fly mode 
 // find cool effect
-
-
 // side tweaked
 
 // secure highScore

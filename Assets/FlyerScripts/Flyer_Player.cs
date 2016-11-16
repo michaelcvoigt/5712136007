@@ -53,7 +53,7 @@ namespace VacuumShaders
 
 			public LowResolution MyLowResolution;
 
-			private int playerHealth = 2;
+			private int playerHealth = 3;
 			private int damagePerHit = 1;
 			private int damagePerDebuff = 2;
 			private int gainPerBuff = 1;
