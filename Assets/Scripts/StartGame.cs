@@ -3,20 +3,16 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
 
+// turn off keys in fly mode ?
 
 
-
-// turn off keys in fly mode
-
-// get airplane
 // find cool effect
 
 
 // side tweaked
-// cop cars 
 
 // secure highScore
-// hook up facebook
+// hook up facebook - see about using browser
 
 // balance game
 
@@ -30,7 +26,7 @@ namespace VacuumShaders
 
 		public class StartGame : MonoBehaviour {
 
-		public CreateFont GameScore;
+
 		public GameScoreFont GameScoreFont;
         	public TextMesh Message;
 
@@ -42,7 +38,7 @@ namespace VacuumShaders
 
 			GetScore() ;
 
-           		 Message.text = "Press < to Drive \n or > to Fly!";
+           		 Message.text = "< to Drive! - to Fly! >";
 		}
 
 		// Update is called once per frame
@@ -67,7 +63,6 @@ namespace VacuumShaders
 		Action<string> success = (string data) => {
 
 
-				GameScore.SetText("High Score");
 				GameScoreFont.SetScore( data);
 		};
 

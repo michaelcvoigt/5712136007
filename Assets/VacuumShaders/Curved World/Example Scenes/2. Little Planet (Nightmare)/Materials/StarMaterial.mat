@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: StarMaterial
-  m_Shader: {fileID: 4800000, guid: 659dfd41c9b8f404390306092e32514c, type: 3}
+  m_Shader: {fileID: 4800000, guid: 61858a089bf544f4ba2ec6b087b89f30, type: 3}
   m_ShaderKeywords: _EMISSIONMAP _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
     _UVSEC_UV1
   m_LightmapFlags: 5
@@ -90,6 +90,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
+        name: V_CW_Label_Tag
+      second: 0
+    - first:
+        name: V_CW_Label_UnityDefaults
+      second: 0
+    - first:
         name: _AlphaTestRef
       second: 0.5
     - first:
@@ -116,6 +122,9 @@ Material:
     - first:
         name: _Glossiness
       second: 0.75
+    - first:
+        name: _InvFade
+      second: 1
     - first:
         name: _Lightmapping
       second: 1

@@ -42,7 +42,7 @@ Material:
     - first:
         name: _EmissionMap
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e330639e7baf2bc49948b605f498a61a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -208,10 +208,10 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.78676474, g: 0.66652673, b: 0.48015788, a: 1}
+      second: {r: 0, g: 0.64705884, b: 0.8980392, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: 0, g: 0, b: 0, a: 1}
+      second: {r: 0.3455882, g: 0.3455882, b: 0.3455882, a: 1}
     - first:
         name: _V_CW_MainTex_Scroll
       second: {r: 0, g: 0, b: 0, a: 0}
