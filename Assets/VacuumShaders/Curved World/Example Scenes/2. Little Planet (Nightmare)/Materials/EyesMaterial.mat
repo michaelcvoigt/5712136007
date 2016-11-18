@@ -7,196 +7,61 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: EyesMaterial
-  m_Shader: {fileID: 4800000, guid: b34654626c8ce6e439d2bdded5f33dc8, type: 3}
-  m_ShaderKeywords: V_CW_SPECULAR _EMISSION _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
-    _UVSEC_UV1
-  m_LightmapFlags: 1
-  m_CustomRenderQueue: 2000
+  m_Shader: {fileID: 4800000, guid: 81ae609a37b59f043ac4256abae11b2e, type: 3}
+  m_ShaderKeywords: TCP2_RAMPTEXT
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _BumpMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _DetailNormalMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _EmissionMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _ParallaxMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Occlusion
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SpecGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _DetailMask
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _DetailAlbedoMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _OcclusionMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Ramp
+      second:
+        m_Texture: {fileID: 2800000, guid: 4a056241e2722dc46a7262a8e7073fd9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-      data:
-        first:
-          name: _SrcBlend
-        second: 1
-      data:
-        first:
-          name: _DstBlend
-        second: 0
-      data:
-        first:
-          name: _Cutoff
-        second: 0.5
-      data:
-        first:
-          name: _AlphaTestRef
-        second: 0.5
-      data:
-        first:
-          name: _Shininess
-        second: 0.20665379
-      data:
-        first:
-          name: _Lightmapping
-        second: 1
-      data:
-        first:
-          name: _Parallax
-        second: 0.02
-      data:
-        first:
-          name: _ZWrite
-        second: 1
-      data:
-        first:
-          name: _Glossiness
-        second: 0.6
-      data:
-        first:
-          name: _BumpScale
-        second: 1
-      data:
-        first:
-          name: _OcclusionStrength
-        second: 1
-      data:
-        first:
-          name: _DetailNormalMapScale
-        second: 1
-      data:
-        first:
-          name: _UVSec
-        second: 0
-      data:
-        first:
-          name: _Mode
-        second: 0
-      data:
-        first:
-          name: _EmissionScaleUI
-        second: 1
-      data:
-        first:
-          name: _RimPower
-        second: 3
-      data:
-        first:
-          name: _V_CW_Rim_Bias
-        second: 0.2
-      data:
-        first:
-          name: _V_CW_Rim_Power
-        second: 3
+    - first:
+        name: _RampSmooth
+      second: 0.1
+    - first:
+        name: _RampThreshold
+      second: 0.5
+    - first:
+        name: _RimMax
+      second: 1
+    - first:
+        name: _RimMin
+      second: 0.21428575
+    - first:
+        name: _RimPower
+      second: 3
+    - first:
+        name: _Shininess
+      second: 0.20665379
     m_Colors:
-      data:
-        first:
-          name: _EmissionColor
-        second: {r: 0.3088235, g: 0.3088235, b: 0.3088235, a: 0.99999994}
-      data:
-        first:
-          name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _SpecColor
-        second: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
-      data:
-        first:
-          name: _SpecularColor
-        second: {r: 0.49264705, g: 0.49264705, b: 0.49264705, a: 1}
-      data:
-        first:
-          name: _EmissionColorUI
-        second: {r: 0.30882353, g: 0.30882353, b: 0.30882353, a: 1}
-      data:
-        first:
-          name: _EmissionColorWithMapUI
-        second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _RimColor
-        second: {r: 0.2, g: 0.2, b: 0.2, a: 0}
-      data:
-        first:
-          name: _V_CW_MainTex_Scroll
-        second: {r: 0, g: 0, b: 0, a: 0}
-      data:
-        first:
-          name: _V_CW_DetailTex_Scroll
-        second: {r: 0, g: 0, b: 0, a: 0}
-      data:
-        first:
-          name: _V_CW_Rim_Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _Color
+      second: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+    - first:
+        name: _HColor
+      second: {r: 0.5921569, g: 0.579, b: 0.5503576, a: 1}
+    - first:
+        name: _LColor
+      second: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+    - first:
+        name: _RimColor
+      second: {r: 1, g: 1, b: 1, a: 0.34117648}
+    - first:
+        name: _SColor
+      second: {r: 0.25789362, g: 0.33027244, b: 0.33088237, a: 1}
+    - first:
+        name: _SpecColor
+      second: {r: 0.9264706, g: 0.9264706, b: 0.9264706, a: 1}

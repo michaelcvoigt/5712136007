@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: palette
-  m_Shader: {fileID: 4800000, guid: 9aa93289d4310914ab6adfa612cec257, type: 3}
+  m_Shader: {fileID: 4800000, guid: 20e6179602f8d494788fde38f4dbc100, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -158,6 +158,9 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _RimPower
+      second: 3
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -212,6 +215,9 @@ Material:
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _RimColor
+      second: {r: 0.26, g: 0.19, b: 0.16, a: 0}
     - first:
         name: _V_CW_MainTex_Scroll
       second: {r: 0, g: 0, b: 0, a: 0}

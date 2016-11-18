@@ -66,7 +66,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Material
-  m_Shader: {fileID: 4800000, guid: 9aa93289d4310914ab6adfa612cec257, type: 3}
+  m_Shader: {fileID: 4800000, guid: 20e6179602f8d494788fde38f4dbc100, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -217,6 +217,9 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _RimPower
+      second: 4.1
+    - first:
         name: _SrcBlend
       second: 1
     - first:
@@ -265,6 +268,9 @@ Material:
     - first:
         name: _EmissionColor
       second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _RimColor
+      second: {r: 0, g: 1, b: 1, a: 1}
     - first:
         name: _SpecColor
       second: {r: 0.2, g: 0.2, b: 0.2, a: 1}

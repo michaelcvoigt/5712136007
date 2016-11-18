@@ -1,4 +1,4 @@
-﻿Shader "Custom/Velvet" {
+﻿Shader "Velvet" {
     Properties {
       _Color ("Main Color", Color) = (1,1,1,1)
       _MainTex ("Texture", 2D) = "white" {}
