@@ -61,11 +61,11 @@ public class cursor3d : MonoBehaviour {
 
 		if (currentCollider.name == "keyright") {
 
-			SceneManager.LoadScene (3);
+			SceneManager.LoadScene (1);
 		}
 		if (currentCollider.name == "keyleft") {
 
-			SceneManager.LoadScene (1);
+			SceneManager.LoadScene (3);
 		}
 
 	

@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 using System;
 
 
-// fix flicker on start screen
 // turn off keys in fly mode 
 // find cool effect
 // side tweaked
